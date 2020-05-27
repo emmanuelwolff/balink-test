@@ -57,7 +57,7 @@ const progress = (state = {}, action) => {
             currentStep: state.currentStep - 1
         };
     }
-    if (action.type === action.DONE){
+    if (action.type === actions.DONE){
         return {
             ...state,
             done: true

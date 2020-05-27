@@ -12575,22 +12575,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERRORS", function() { return ERRORS; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash.get */ "./node_modules/lodash.get/index.js");
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/store */ "./src/redux/store.js");
-/* harmony import */ var _redux_initialState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/initialState */ "./src/redux/initialState.js");
-/* harmony import */ var _langs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./langs */ "./src/langs.js");
-/* harmony import */ var _processBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./processBar */ "./src/processBar.js");
-/* harmony import */ var _formComp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./formComp */ "./src/formComp.js");
-/* harmony import */ var _redux_connectors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./redux/connectors */ "./src/redux/connectors.js");
-
-
-
-
-
+/* harmony import */ var _langs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./langs */ "./src/langs.js");
+/* harmony import */ var _processBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./processBar */ "./src/processBar.js");
+/* harmony import */ var _formComp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formComp */ "./src/formComp.js");
+/* harmony import */ var _redux_connectors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/connectors */ "./src/redux/connectors.js");
 
 
 
@@ -12618,21 +12606,20 @@ const TABS = [{
   active: false
 }];
 const ERRORS = {
-  'required': 'This field is required'
+  'required': 'This field is required',
+  'email': 'The email is not formatted correctly',
+  'phone': 'The phone number is not formatted correctly'
 };
-const store = Object(_redux_store__WEBPACK_IMPORTED_MODULE_4__["default"])(_redux_initialState__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 const App = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
-    store: store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_langs__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_processBar__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_formComp__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, props.progress.done ? 'Your data has been saved' : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_langs__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_processBar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_formComp__WEBPACK_IMPORTED_MODULE_3__["default"], {
     tabs: TABS
   })));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (App);
+/* harmony default export */ __webpack_exports__["default"] = (Object(_redux_connectors__WEBPACK_IMPORTED_MODULE_4__["progressConnector"])(App));
 
 /***/ }),
 
@@ -12684,7 +12671,8 @@ const FormBody = props => {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Buttons, {
     step: props.currentStep,
     next: props.nextStep,
-    previous: props.previousStep
+    previous: props.previousStep,
+    submit: props.submit
   }));
 };
 
@@ -12716,7 +12704,8 @@ FormField.propTypes = {
 const Buttons = ({
   step,
   next,
-  previous
+  previous,
+  submit
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "buttons"
@@ -12727,6 +12716,7 @@ const Buttons = ({
     onClick: next,
     label: "NEXT"
   }), step === 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Button, {
+    onClick: submit,
     label: "SUBMIT"
   }));
 };
@@ -12798,10 +12788,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./src/App.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/store */ "./src/redux/store.js");
+/* harmony import */ var _redux_initialState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./redux/initialState */ "./src/redux/initialState.js");
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('root'));
+
+
+
+const store = Object(_redux_store__WEBPACK_IMPORTED_MODULE_4__["default"])(_redux_initialState__WEBPACK_IMPORTED_MODULE_5__["default"]);
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
+  store: store
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null))), document.getElementById('root'));
 
 /***/ }),
 
@@ -13056,16 +13055,36 @@ const previousStep = () => {
 };
 const submit = () => {
   return (dispatch, getState) => {
-    const formData = getState().data;
-    fetch('/api/checkForm', {
-      method: 'POST'
-    }).then(response => {
-      if (response.ok) {
+    const {
+      progress = {},
+      data
+    } = getState();
+    const step = _App__WEBPACK_IMPORTED_MODULE_1__["STEPS"][progress.currentStep] || {};
+    const errors = Object(_validation_js__WEBPACK_IMPORTED_MODULE_0__["getErrors"])(data[step.key]);
+
+    if (!errors) {
+      const formData = getValues(getState().data);
+      fetch('/api/form', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error('error');
+        }
+
         dispatch({
           type: DONE
         });
-      }
-    });
+      }).catch(() => alert('An error occured while saving your data!'));
+    } else {
+      dispatch({
+        type: SET_ERRORS,
+        errors
+      });
+    }
   };
 };
 const changeLang = lang => {
@@ -13081,6 +13100,19 @@ const getLangs = () => {
       langs
     }));
   };
+};
+
+const getValues = data => {
+  const values = {};
+
+  for (const step in data) {
+    values[step] = {};
+    data[step].forEach(field => {
+      values[step][field.name] = field.value;
+    });
+  }
+
+  return values;
 };
 
 /***/ }),
@@ -13108,7 +13140,8 @@ const dataConnector = component => Object(react_redux__WEBPACK_IMPORTED_MODULE_0
 }), {
   updateField: _actions__WEBPACK_IMPORTED_MODULE_1__["updateField"],
   nextStep: _actions__WEBPACK_IMPORTED_MODULE_1__["nextStep"],
-  previousStep: _actions__WEBPACK_IMPORTED_MODULE_1__["previousStep"]
+  previousStep: _actions__WEBPACK_IMPORTED_MODULE_1__["previousStep"],
+  submit: _actions__WEBPACK_IMPORTED_MODULE_1__["submit"]
 })(component);
 const progressConnector = component => Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(state => ({
   progress: state.progress
@@ -13285,7 +13318,7 @@ const progress = (state = {}, action) => {
     };
   }
 
-  if (action.type === action.DONE) {
+  if (action.type === _actions__WEBPACK_IMPORTED_MODULE_3__["DONE"]) {
     return { ...state,
       done: true
     };

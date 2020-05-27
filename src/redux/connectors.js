@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {updateField, nextStep, previousStep, changeLang, getLangs} from './actions';
+import {updateField, nextStep, previousStep, changeLang, getLangs, submit} from './actions';
 
 export const dataConnector = (component) => connect(
     state => ({
@@ -7,7 +7,7 @@ export const dataConnector = (component) => connect(
         currentStep: state.progress.currentStep,
         errors: state.errors
     }), 
-    {updateField, nextStep, previousStep}
+    {updateField, nextStep, previousStep, submit}
 )(component);
 
 export const progressConnector = (component) => connect(

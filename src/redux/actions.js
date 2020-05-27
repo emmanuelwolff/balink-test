@@ -44,12 +44,28 @@ export const previousStep = () => {
 
 export const submit = () => {
     return (dispatch, getState) => {
-        const formData = getState().data;
-        fetch('/api/checkForm', {method: 'POST'}).then(response => {
-            if (response.ok){
+        const {progress = {}, data} = getState();
+        const step = STEPS[progress.currentStep] || {};
+        const errors = getErrors(data[step.key]);
+        if (!errors){
+            const formData = getValues(getState().data);
+            fetch('/api/form', {
+                method: 'POST', 
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+            }).then(response => {
+                if (!response.ok){
+                    throw new Error('error');
+                }
                 dispatch({type: DONE});
-            }
-        })
+            }).catch(() => alert('An error occured while saving your data!'));
+        }
+        else{
+            dispatch({type: SET_ERRORS, errors});        
+        }
     };
 };
 
@@ -66,4 +82,13 @@ export const getLangs = () => {
             .then(response => response.json())
             .then(langs => dispatch({type: SET_LANG, langs}));
     }
+};
+
+const getValues = (data) => {
+    const values = {};
+    for (const step in data){
+        values[step] = {};
+        data[step].forEach(field => {values[step][field.name] = field.value});
+    }
+    return values;
 };

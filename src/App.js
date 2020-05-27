@@ -1,13 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import get from 'lodash.get'
-import { Provider } from 'react-redux'
-import getStore from './redux/store';
-import INITIAL_STATE from './redux/initialState';
 import Langs from './langs';
 import ProcessBar from './processBar';
 import FormComp from './formComp';
-import {dataConnector} from './redux/connectors';
+import {progressConnector} from './redux/connectors';
 
 export const STEPS = {
     1 : {
@@ -30,24 +25,24 @@ export const TABS = [
 ];
 
 export const ERRORS = {
-    'required': 'This field is required'
+    'required': 'This field is required',
+    'email': 'The email is not formatted correctly',
+    'phone': 'The phone number is not formatted correctly'
 };
-
-const store = getStore(INITIAL_STATE);
 
 const App = (props) => {
     return (
-        <Provider store={store}>
-            <div className="container">
+        <div className="container">
+            {props.progress.done? 'Your data has been saved' :
+            <>
                 <Langs /> 
                 <ProcessBar />
                 <FormComp tabs={TABS} />
-            </div>
-        </Provider>
+        </>}
+    </div>
     );
 };
 
-export default App;
-
+export default progressConnector(App);
 
 

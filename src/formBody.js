@@ -28,7 +28,8 @@ const FormBody = (props) => {
         ))}
         <Buttons step={props.currentStep} 
                  next={props.nextStep} 
-                 previous={props.previousStep}/>
+                 previous={props.previousStep}
+                 submit={props.submit}/>
     </form>
 };
 
@@ -53,12 +54,12 @@ FormField.propTypes = {
     error: PropTypes.string
 };
 
-const Buttons = ({step, next, previous}) => {
+const Buttons = ({step, next, previous, submit}) => {
     return (
         <div className="buttons">
             {step > 1 && <Button onClick={previous} label="PREVIOUS" />}
             {step < 3 && <Button onClick={next} label="NEXT" />}
-            {step === 3 && <Button label="SUBMIT" />}
+            {step === 3 && <Button onClick={submit} label="SUBMIT" />}
         </div>
     );
 }
