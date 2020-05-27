@@ -1,0 +1,172 @@
+*:focus {
+    outline:none !important
+}
+
+html {
+     font-family: Arial, Helvetica, sans-serif;
+     color: grey;
+}
+
+.container {
+    width: 80vw;
+    /*border: 5px solid red;*/
+    margin: auto;
+    min-width: 330px;
+    max-width: 600px;
+}
+
+.header {
+    height: 15px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-right: 10px;
+}
+
+.langs {
+    float: right;
+}
+
+.langs select {
+    border: 0px;
+    background:none;
+
+}
+
+.form-steps {
+    width: 300px;
+    margin: auto;
+    /*border: 5px green solid;*/
+    padding: 0px;
+}
+
+.form-steps ul {
+    text-align: center;
+    padding-inline-start: unset;
+}
+
+.form-step {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    /*border: 2px solid pink;*/
+}
+
+.step-container {
+    /*border: 2px solid yellowgreen;*/
+    margin: auto;
+}
+
+.step {
+    color: white;
+    font-weight: bold;
+    background-color: grey;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.step-desc {
+    color: grey;
+    font-size: 0.8em;
+}
+
+.form-step.filled .step, .form-step.filling .step{
+    background-color: #3737ab;
+}
+
+.form-step.filled .step-desc, .form-step.filling .step-desc{
+    color: black;
+}
+
+.step::after {
+    content: "";
+    display:block;
+    position: relative;
+    border-top: 1px solid grey;
+    width: 62px;
+    z-index: -1;
+    left: 26px;
+    top: -10px;
+}
+
+li:last-child .step::after{
+    display:none;
+}
+
+.form-step.filled .step::after {
+    border-top: 1px solid #3737ab;
+}
+
+.form {
+    /*border: 5px solid black;*/
+}
+
+.tabs {
+    display:table;
+    table-layout: fixed;
+    width: 100%;
+    height: 30px;
+    margin: 10px 0px 60px 0px;
+    padding-top: 10px;
+    /*border: 5px solid purple;*/
+}
+
+.tab {
+    display: table-cell;
+    text-align: center;
+    font-weight: bold;
+    height: 100%;
+}
+
+.tab.active {
+    color: #3737ab;
+    border-bottom: 2px solid #3737ab;
+}
+
+.form-body {
+    width: 80%;
+    margin: auto;
+    /*border: 1px solid fuchsia;*/
+}
+
+.form-body .field {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.form-body input {
+    width: 100%;
+    font-family:inherit;
+    font-size: inherit;
+    border: 0px;
+    border-bottom: 1px solid grey;
+}
+
+.form-body input:focus {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.error-field {
+    color: red;
+    font-size: 0.7em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.buttons button {
+    background-color: #3737ab;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    margin: 10px;
+    padding: 8px;
+    width: 100px;
+    font-size: 1em;
+}

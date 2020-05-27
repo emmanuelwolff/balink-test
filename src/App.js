@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from 'prop-types';
+import get from 'lodash.get'
+import { Provider } from 'react-redux'
+import getStore from './redux/store';
+import INITIAL_STATE from './redux/initialState';
+import Langs from './langs';
+import ProcessBar from './processBar';
+import FormComp from './formComp';
+import {dataConnector} from './redux/connectors';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const STEPS = {
+    1 : {
+        key: 'personal',
+        title: 'Beneficiary'
+    }, 
+    2: {
+        key: 'address',
+        title: 'Address'
+    },
+    3: {
+        key: 'contactability',
+        title: 'Contactability'
+    }
+};
+
+export const TABS = [
+    {label: 'PERSONAL', active: true},
+    {label: 'BUSINESS', active: false}
+];
+
+export const ERRORS = {
+    'required': 'This field is required'
+};
+
+const store = getStore(INITIAL_STATE);
+
+const App = (props) => {
+    return (
+        <Provider store={store}>
+            <div className="container">
+                <Langs /> 
+                <ProcessBar />
+                <FormComp tabs={TABS} />
+            </div>
+        </Provider>
+    );
+};
 
 export default App;
+
+
+
