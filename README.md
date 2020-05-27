@@ -14,7 +14,10 @@ BALink React exercise
 
 then, you can navigate to _localhost:5000_
 
+Tested on Chrome
+
 ## TODO
 
 - Preload the GET request (in order to speed up the rendering)
 - clean up the packages!!
+- test on other browsers / devices
