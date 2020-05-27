@@ -18,6 +18,7 @@ Tested on Chrome
 
 ## TODO
 
+- I didnt know what to do with the Tabs :) 
 - Preload the GET request (in order to speed up the rendering)
 - clean up the packages!!
 - test on other browsers / devices
