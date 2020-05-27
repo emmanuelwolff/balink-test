@@ -12717,19 +12717,22 @@ const Buttons = ({
     label: "NEXT"
   }), step === 3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Button, {
     onClick: submit,
-    label: "SUBMIT"
+    label: "SUBMIT",
+    type: "submit"
   }));
 };
 
 const Button = ({
   label,
-  onClick
+  onClick,
+  type
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: e => {
       e.preventDefault();
       onClick();
-    }
+    },
+    className: `${type}`
   }, label);
 };
 

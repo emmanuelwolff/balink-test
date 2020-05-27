@@ -59,13 +59,13 @@ const Buttons = ({step, next, previous, submit}) => {
         <div className="buttons">
             {step > 1 && <Button onClick={previous} label="PREVIOUS" />}
             {step < 3 && <Button onClick={next} label="NEXT" />}
-            {step === 3 && <Button onClick={submit} label="SUBMIT" />}
+            {step === 3 && <Button onClick={submit} label="SUBMIT" type="submit"/>}
         </div>
     );
 }
 
-const Button = ({label, onClick}) => {
-    return <button onClick={(e) => {e.preventDefault(); onClick()}}>{label}</button>;
+const Button = ({label, onClick, type}) => {
+    return <button onClick={(e) => {e.preventDefault(); onClick()}} className={`${type}`}>{label}</button>;
 }
 
 Button.defaultProps = {
